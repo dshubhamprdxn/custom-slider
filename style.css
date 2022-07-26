@@ -1,0 +1,249 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: calc(5px + 0.4vw);
+}
+
+body {
+  font-family: 'Helvetica', serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.center-y {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  color: #fff;
+  position: relative;
+  /* shubham */
+  /* transition: clip 1.5s ease 0.5s; */
+  /* clip: rect(0 100vw 100vh 100vw); */
+  /* clip: rect(0, 0, 100vh, 0); */
+}
+
+.center-y a {
+  display: inline-block;
+  position: absolute;
+  bottom: 16.2%;
+  left: 9.5%;
+  z-index: 9;
+}
+
+.info {
+  width: 40%;
+  position: absolute;
+  top: 30%;
+  left: 9.5%;
+  flex-basis: 55%;
+  text-align: left;
+  z-index: 9;
+}
+
+p {
+  padding: 20px 20% 0 0;
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+  display: none;
+}
+
+li figure {
+  height: 100%;
+  /* position: absolute;
+      right: 0; */
+  mask-image: url(https://gist.githubusercontent.com/dshubhamprdxn/cf56794f585138c230bcfe55e1edeb45/raw/2bbdd056d08541fe8676f089897d159d62bfc2dc/mask.svg);
+  -webkit-mask-image: url(https://gist.githubusercontent.com/dshubhamprdxn/cf56794f585138c230bcfe55e1edeb45/raw/2bbdd056d08541fe8676f089897d159d62bfc2dc/mask.svg);
+  -webkit-mask-position: -250% 0;
+  mask-position: -250% 0;
+  /* shubham */
+  -webkit-mask-repeat: no-repeat repeat;
+  mask-repeat: no-repeat repeat;
+}
+
+@keyframes slide-right {
+  0% {
+    -webkit-mask-position: -250% 0;
+    mask-position: -250% 0;
+  }
+
+  100% {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+}
+
+.current figure {
+  animation: slide-right 1.5s 1s ease forwards;
+}
+
+@keyframes slide-rev {
+  0% {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  100% {
+    -webkit-mask-position: 250% 0;
+    mask-position: 250% 0;
+  }
+}
+
+li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 100% 0;
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+
+/* shubham code start */
+.slider li {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  display: flex;
+}
+
+.slider li .hero-img {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+}
+
+li.current,
+.current li {
+  overflow: hidden;
+  width: 100%;
+  z-index: 6 !important;
+  animation: current-active 1s ease forwards;
+}
+
+.slider li.current .hero-img {
+  animation: current-hero-img 1.5s ease-in-out forwards;
+}
+
+@keyframes current-hero-img {
+  0% {
+    clip: rect(0, 0, 100vh, 0);
+  }
+  100% {
+    clip: rect(0, 100vw, 100vh, 0);
+  }
+}
+
+@keyframes prev-hero-img {
+  100% {
+    clip: rect(0, 100vw, 100vh, 0);
+  }
+}
+
+@keyframes current-active {
+  100% {
+    left: 0%;
+  }
+}
+
+li.prev {
+  width: 100%;
+  left: 0%;
+  animation: slide-vanish 1s 1.5s ease forwards;
+  z-index: 1;
+}
+
+.slider li.prev .hero-img {
+  animation: prev-hero-img 1.5s ease-in-out forwards;
+}
+/* shubham code ends */
+
+@keyframes slide-vanish {
+  0% {
+    left: 0%;
+  }
+
+  60% {
+    left: -90%;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+li.current figure,
+.current figure,
+.slick-slide.slick-current.slick-active figure {
+  -webkit-animation: slide-right 1.5s ease forwards;
+  animation: slide-right 1.5s ease forwards;
+}
+
+li.prev figure,
+.prev figure {
+  -webkit-animation: slide-rev 1.5s ease forwards;
+  animation: slide-rev 1.5s ease forwards;
+}
+
+.slider nav {
+  position: absolute;
+  bottom: 9%;
+  left: 0;
+  right: 70%;
+  text-align: center;
+  z-index: 10;
+}
+
+nav a {
+  display: inline-block;
+  border-radius: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+  min-width: 12px;
+  min-height: 12px;
+  background: #fff;
+  margin: 0 1rem;
+  transition: transform 0.3s;
+}
+
+a.current_dot {
+  background: #e6aa46;
+}
+
+.btn {
+  padding: 16px 32px;
+  border-radius: 35px;
+  background: rgba(230, 170, 70, 0.9);
+  color: #464646;
+  cursor: pointer;
+  outline: none;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.btn:hover {
+  background: #468269;
+}
